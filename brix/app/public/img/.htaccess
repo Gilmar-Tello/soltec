@@ -1,0 +1,22 @@
+# ============================================================
+#  Carpeta de logos subidos (tenant_N/): aqui SOLO se sirven imagenes.
+#  Nada se ejecuta, aunque alguien lograra subir un archivo con codigo.
+# ============================================================
+Options -Indexes -ExecCGI
+
+<FilesMatch "\.(php|php\d|phtml|phar|pl|py|cgi|sh)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8
+
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>

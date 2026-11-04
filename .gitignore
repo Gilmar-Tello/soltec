@@ -1,0 +1,95 @@
+# ============================================================
+#  SOLTEC — .gitignore (raiz del repo = public_html)
+#  privado/, bd/ y .env viven FUERA de este repo (D:\soltec\),
+#  asi que aqui solo se ignora lo que pueda aparecer dentro.
+#  Regla de oro: en GitHub va CODIGO, nunca credenciales,
+#  bases de datos ni archivos que suben los clientes.
+# ============================================================
+
+# ── Credenciales y variables de entorno ────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Bases de datos y respaldos ─────────────────────────────
+*.sql
+*.sql.gz
+*.dump
+*.sqlite
+*.sqlite3
+*.db
+
+# ── Archivos que SUBEN LOS CLIENTES en el sistema ──────────
+# Se ignora el contenido; .gitkeep conserva la carpeta y se
+# mantiene el .htaccess que las protege.
+
+# POS: logos por negocio y fotos de productos
+pos/app/public/img/*
+!pos/app/public/img/.gitkeep
+!pos/app/public/img/.htaccess
+pos/app/public/productos/*
+!pos/app/public/productos/.gitkeep
+!pos/app/public/productos/.htaccess
+
+# Alquileres (saas): fotos de productos y de entrega/devolucion
+saas/app/public/productos/*
+!saas/app/public/productos/.gitkeep
+!saas/app/public/productos/.htaccess
+saas/app/public/reservas/*
+!saas/app/public/reservas/.gitkeep
+!saas/app/public/reservas/.htaccess
+
+# Brix: logos por negocio
+brix/app/public/img/*
+!brix/app/public/img/.gitkeep
+!brix/app/public/img/.htaccess
+
+# Por si se agregan otras carpetas de subidas
+**/uploads/
+**/subidas/
+**/tenant_*/
+
+# Documentos que carga el cliente
+*.pdf
+*.xls
+*.xlsx
+*.doc
+*.docx
+*.csv
+
+# ── Carpeta oculta del hosting (no es codigo del proyecto) ─
+brix/.private/
+
+# ── Logs, respaldos y temporales ───────────────────────────
+DO_NOT_UPLOAD_HERE
+error_log
+*.log
+logs/
+*.bak
+*.bak_*
+*.old
+*.orig
+*.tmp
+*.swp
+*.zip
+*.rar
+*.tar
+*.tar.gz
+*.7z
+
+# ── Herramientas temporales que nunca deben subirse ────────
+generar_hash*.php
+test_login.php
+phpinfo.php
+info.php
+adminer.php
+
+# ── Editor y sistema operativo ─────────────────────────────
+node_modules/
+.vscode/
+.idea/
+.vs/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini

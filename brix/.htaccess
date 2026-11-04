@@ -1,0 +1,55 @@
+# ============================================================
+#  Brix SOLTEC — brix.soltec.click
+#  Apache aplica esto SIEMPRE, incluso si PHP falla.
+# ============================================================
+
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /
+
+# ── Solo se entra por el subdominio propio ─────────────────
+RewriteCond %{HTTP_HOST} !^brix\.soltec\.click [NC]
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
+RewriteRule ^ - [F,L]
+
+# ── Carpetas internas: PHP las sigue usando con require ────
+RewriteRule ^(config|rutas|migraciones)(/|$) - [F,L]
+RewriteRule ^app/(controladores|modelos|vistas|lib)(/|$) - [F,L]
+
+# ── Nunca ejecutar PHP dentro de carpetas de subida ────────
+RewriteRule ^app/public/.*\.(php\d?|phtml|phar)$ - [F,L,NC]
+
+# ── Archivos sensibles: respaldos, SQL, notas, logs ────────
+<FilesMatch "(\.(sql|log|md|env|ini|gz|tar|zip|rar|bak|sh|yml|yaml)$)|(\.bak_)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── Herramientas temporales que nunca deben quedar arriba ──
+<FilesMatch "^(generar_hash|generar_hash_temporal|test_login|info|phpinfo|adminer)\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── Todo lo demas va al index ──────────────────────────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

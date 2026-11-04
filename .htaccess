@@ -1,0 +1,58 @@
+# ============================================================
+#  SOLTEC — raiz del hosting (soltec.click)
+#  Aqui SOLO vive la landing publica: index.html, sin PHP y sin
+#  ninguna conexion a base de datos (unica excepcion: contador.php, que
+#  guarda un numero en un archivo de privado/). Los sistemas viven cada uno
+#  en su subdominio.
+#  Apache aplica esto SIEMPRE, incluso si PHP falla.
+# ============================================================
+
+Options -Indexes
+DirectoryIndex index.html
+
+RewriteEngine On
+RewriteBase /
+
+# ── Cada sistema entra solo por su subdominio ──────────────
+# Bloquea soltec.click/admin/ , /pos/ , /saas/ y /brix/ , que eran
+# una segunda puerta de entrada a los mismos sistemas.
+RewriteCond %{HTTP_HOST} !^(admin|pos|saas|brix)\. [NC]
+RewriteRule ^(admin|pos|saas|brix)(/|$) - [F,L]
+
+# ── Restos de estructuras viejas, por si algo quedara ──────
+RewriteRule ^(config|rutas|privado|migraciones|app)(/|$) - [F,L]
+
+# ── Archivos sensibles: respaldos, SQL, notas, logs, scripts ──
+<FilesMatch "(\.(sql|log|md|env|ini|gz|tar|zip|rar|bak|sh|yml|yaml|lock)$)|(\.bak_)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── Herramientas temporales que nunca deben quedar arriba ──
+<FilesMatch "^(generar_hash|generar_hash_temporal|test_login|info|phpinfo|adminer)\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── Cabeceras de seguridad ─────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    # CSP en modo SOLO-REPORTE (no bloquea): mira la consola (F12) de la landing; si sale limpia,
+    # cambia "Content-Security-Policy-Report-Only" por "Content-Security-Policy".
+    Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+    # HSTS (1 dia al empezar). Solo se envia si la peticion llego por HTTPS.
+    Header always set Strict-Transport-Security "max-age=86400" env=HTTPS
+</IfModule>

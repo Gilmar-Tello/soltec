@@ -1,0 +1,32 @@
+# ============================================================
+#  app/public — carpeta de archivos subidos (fotos) y JS
+#  Aqui SOLO se sirven archivos estaticos. Nada se ejecuta.
+# ============================================================
+
+Options -Indexes -ExecCGI
+
+# Ningun script se ejecuta aunque alguien logre subirlo
+<FilesMatch "\.(php|php\d|phtml|phar|pl|py|cgi|sh|htaccess)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8
+
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Las fotos casi no cambian: que el navegador las guarde
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/png  "access plus 30 days"
+    ExpiresByType image/webp "access plus 30 days"
+</IfModule>

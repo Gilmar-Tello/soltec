@@ -1,0 +1,608 @@
+/* ============================================================
+   SOLTEC — Landing pública de soltec.click
+   Layout con CSS Grid. Sin PHP, sin base de datos.
+   ============================================================ */
+
+:root {
+    --azul-oscuro: #0d1b2a;
+    --azul-medio: #1b263b;
+    --azul-claro: #415a77;
+    --acento: #2563eb;
+    --acento-oscuro: #1b4bc0;
+    --acento-suave: #eaf4ff;
+    --celeste: #4db8ff;
+    --fondo: #f4f7fb;
+    --blanco: #ffffff;
+    --texto: #1f2937;
+    --texto-suave: #5b6779;
+    --borde: #dbe3ee;
+    --verde: #25d366;
+    --naranja: #b45309;
+    --naranja-suave: #fef3c7;
+    --radio: 12px;
+    --sombra: 0 4px 12px rgba(13, 27, 42, 0.08);
+    --sombra-alta: 0 12px 28px rgba(13, 27, 42, 0.16);
+}
+
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h1, h2, h3 {
+    line-height: 1.25;
+    margin: 0 0 10px;
+}
+
+/* ── Rejilla principal ──────────────────────────────────── */
+.contenedor-principal {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "encabezado encabezado"
+        "menu       menu"
+        "contenido  lateral"
+        "pie        pie";
+    gap: 18px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.encabezado  { grid-area: encabezado; }
+.menu        { grid-area: menu; }
+.servicios   { grid-area: contenido; }
+.informacion { grid-area: lateral; }
+.pie         { grid-area: pie; }
+
+/* ── Encabezado ─────────────────────────────────────────── */
+.encabezado {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-medio) 60%, var(--azul-claro) 100%);
+    color: var(--blanco);
+    padding: 32px 30px;
+}
+
+.encabezado img {
+    width: 110px;
+    height: auto;
+    flex-shrink: 0;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+
+/* Compensa el ancho del logo para que el titulo quede centrado de verdad */
+.encabezado::after {
+    content: "";
+    width: 110px;
+    flex-shrink: 0;
+}
+
+.texto-encabezado {
+    flex: 1;
+    text-align: center;
+}
+
+.texto-encabezado h1 {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+}
+
+.texto-encabezado p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #cfe0f5;
+}
+
+.boton-panel {
+    flex-shrink: 0;
+    background: var(--blanco);
+    color: var(--azul-oscuro);
+    font-weight: 800;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.boton-panel:hover,
+.boton-panel:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-alta);
+}
+
+/* ── Menú ───────────────────────────────────────────────── */
+.menu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--azul-medio);
+    gap: 10px;
+    padding: 14px 20px;
+    box-shadow: var(--sombra);
+}
+
+.menu a {
+    text-align: center;
+    padding: 12px 8px;
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: background .15s ease, color .15s ease;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+    background: var(--azul-claro);
+}
+
+.menu .menu-panel {
+    background: var(--acento);
+}
+
+.menu .menu-panel:hover,
+.menu .menu-panel:focus-visible {
+    background: var(--acento-oscuro);
+}
+
+/* ── Contenido ──────────────────────────────────────────── */
+.servicios {
+    padding: 10px 20px 20px;
+    scroll-margin-top: 90px;
+}
+
+.titulo-seccion {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    color: var(--azul-oscuro);
+}
+
+.subtitulo-seccion {
+    color: var(--texto-suave);
+    margin-top: 0;
+    max-width: 65ch;
+}
+
+.titulo-catalogo {
+    color: var(--azul-oscuro);
+    font-size: 1.4rem;
+    margin: 28px 0 14px;
+}
+
+/* ── Historia ───────────────────────────────────────────── */
+.historia {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.historia h2 {
+    color: var(--azul-oscuro);
+}
+
+.historia img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    object-position: center 30%;
+    border-radius: 10px;
+    margin: 12px 0;
+}
+
+.historia p {
+    margin: 0;
+    color: var(--texto-suave);
+}
+
+/* ── Estadísticas ───────────────────────────────────────── */
+.estadisticas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.estadisticas div {
+    background: var(--azul-oscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 22px 14px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.estadisticas strong {
+    display: block;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--celeste);
+    line-height: 1.1;
+}
+
+.estadisticas p {
+    margin: 4px 0 0;
+    font-size: .95rem;
+    color: #cfe0f5;
+}
+
+/* ── Catálogo de tarjetas ───────────────────────────────── */
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-alta);
+}
+
+.tarjeta-destacada {
+    grid-column: span 2;
+    border-color: var(--acento);
+    border-width: 2px;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.tarjeta-destacada img {
+    height: 230px;
+}
+
+.tarjeta-cuerpo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+}
+
+.tarjeta h3 {
+    color: var(--azul-oscuro);
+    font-size: 1.2rem;
+}
+
+.tarjeta p {
+    color: var(--texto-suave);
+    font-size: .95rem;
+    margin: 0 0 12px;
+    flex: 1;
+}
+
+.tarjeta-desarrollo {
+    background: linear-gradient(180deg, #fffdf7 0%, var(--blanco) 40%);
+}
+
+/* ── Precios y etiquetas ────────────────────────────────── */
+.precio {
+    align-self: flex-start;
+    background: var(--acento-suave);
+    color: var(--acento);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: .95rem;
+    margin-bottom: 14px;
+}
+
+.precio-destacado {
+    background: var(--azul-oscuro);
+    color: var(--celeste);
+}
+
+.precio-desarrollo {
+    background: var(--naranja-suave);
+    color: var(--naranja);
+}
+
+/* ── Botones ────────────────────────────────────────────── */
+.boton {
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--acento);
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: 800;
+    padding: 11px 20px;
+    border-radius: 8px;
+    transition: background .15s ease, transform .15s ease;
+}
+
+.boton:hover,
+.boton:focus-visible {
+    background: var(--acento-oscuro);
+    transform: translateY(-1px);
+}
+
+.boton-desarrollo {
+    background: var(--azul-claro);
+}
+
+.boton-desarrollo:hover,
+.boton-desarrollo:focus-visible {
+    background: var(--azul-medio);
+}
+
+.boton-ancho {
+    display: block;
+    align-self: stretch;
+    text-align: center;
+    background: var(--verde);
+    color: #05321a;
+}
+
+.boton-ancho:hover,
+.boton-ancho:focus-visible {
+    background: #1fb855;
+    color: #05321a;
+}
+
+/* ── Lateral ────────────────────────────────────────────── */
+.informacion {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 22px;
+    height: fit-content;
+    margin-right: 18px;
+    scroll-margin-top: 90px;
+}
+
+.informacion h2 {
+    color: var(--azul-oscuro);
+    font-size: 1.3rem;
+}
+
+.informacion h3 {
+    color: var(--azul-oscuro);
+    font-size: 1.05rem;
+    margin-top: 18px;
+}
+
+.informacion p {
+    color: var(--texto-suave);
+    font-size: .95rem;
+}
+
+.informacion ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.informacion li {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--acento-suave);
+    font-size: .95rem;
+}
+
+.lista-categorias li::before {
+    content: "▸ ";
+    color: var(--acento);
+    font-weight: 900;
+}
+
+.informacion a {
+    color: var(--acento);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.informacion a:hover,
+.informacion a:focus-visible {
+    text-decoration: underline;
+}
+
+.anuncio {
+    background: var(--acento-suave);
+    color: var(--azul-oscuro);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 800;
+    margin: 18px 0 12px;
+}
+
+/* ── Pie ────────────────────────────────────────────────── */
+.pie {
+    background: var(--azul-oscuro);
+    color: #cfe0f5;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.pie p {
+    margin: 4px 0;
+}
+
+.pie-marca {
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--blanco);
+    letter-spacing: 1px;
+}
+
+.pie-enlaces {
+    margin-top: 12px !important;
+}
+
+.pie-enlaces a {
+    color: var(--celeste);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.pie-enlaces a:hover,
+.pie-enlaces a:focus-visible {
+    text-decoration: underline;
+}
+
+.pie-enlaces span {
+    margin: 0 8px;
+    opacity: .5;
+}
+
+.pie-visitas {
+    display: inline-block;
+    margin-top: 14px !important;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(77, 184, 255, 0.35);
+    border-radius: 999px;
+    font-size: .9rem;
+    color: var(--celeste);
+}
+
+.pie-visitas[hidden] {
+    display: none;
+}
+
+.pie-visitas strong {
+    color: var(--blanco);
+    font-weight: 800;
+}
+
+.pie-copy {
+    margin-top: 14px !important;
+    font-size: .85rem;
+    opacity: .7;
+}
+
+/* ── Botón flotante de WhatsApp ─────────────────────────── */
+.whatsapp-flotante {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--verde);
+    color: #05321a;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 999px;
+    box-shadow: var(--sombra-alta);
+    transition: transform .15s ease;
+}
+
+.whatsapp-flotante:hover,
+.whatsapp-flotante:focus-visible {
+    transform: translateY(-3px);
+}
+
+/* ── Accesibilidad ──────────────────────────────────────── */
+a:focus-visible {
+    outline: 3px solid var(--celeste);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+}
+
+/* ── Pantallas medianas ─────────────────────────────────── */
+@media (max-width: 1000px) {
+    .contenedor-principal {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "encabezado"
+            "menu"
+            "contenido"
+            "lateral"
+            "pie";
+    }
+
+    .catalogo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .informacion {
+        position: static;
+        margin: 0 20px;
+    }
+}
+
+/* ── Teléfonos ──────────────────────────────────────────── */
+@media (max-width: 700px) {
+    .encabezado::after {
+        display: none;
+    }
+
+    .encabezado {
+        flex-direction: column;
+        text-align: center;
+        padding: 26px 20px;
+    }
+
+    .encabezado img {
+        width: 90px;
+    }
+
+    .menu {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 12px;
+        position: static;
+    }
+
+    .catalogo {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-destacada {
+        grid-column: span 1;
+    }
+
+    .estadisticas {
+        grid-template-columns: 1fr;
+    }
+
+    .historia img {
+        height: 200px;
+    }
+
+    .whatsapp-flotante span {
+        display: none;
+    }
+
+    .whatsapp-flotante {
+        padding: 14px;
+    }
+}
