@@ -80,6 +80,14 @@ class AuthControlador {
             exit;
         }
 
+        // Fecha de pago (la fija el panel maestro): vale hasta las 23:59 de ese dia.
+        $diasPago = $this->diasParaPago((int) $user['tenant_id']);
+        if ($diasPago !== null && $diasPago < 0) {
+            $_SESSION['error'] = 'Este negocio esta suspendido por falta de pago u otro inconveniente. Contacta a soporte +502 54925395.';
+            header('Location: ' . URL_BASE . '/?url=auth/login');
+            exit;
+        }
+
         limpiarIntentos($usuarioIngresado);
 
         // ID de sesion nuevo: uno robado antes del login ya no sirve
@@ -91,8 +99,30 @@ class AuthControlador {
         $_SESSION['tenant_id']      = $user['tenant_id'];
         $_SESSION['nombre_negocio'] = $user['nombre_negocio'];
 
+        // Aviso de pago: solo desde 3 dias antes; se muestra una vez (plantillas/aviso_pago.php)
+        unset($_SESSION['aviso_pago_dias']);
+        if ($diasPago !== null && $diasPago <= self::AVISO_PAGO_DIAS) {
+            $_SESSION['aviso_pago_dias'] = $diasPago;
+        }
+
         header('Location: ' . URL_BASE . '/?url=dashboard/index');
         exit;
+    }
+
+    // Dias que faltan para la fecha de pago del negocio (negativo = ya vencio, null = sin fecha).
+    // Va en una consulta aparte: si la columna fecha_pago aun no existe en la base, el login no se rompe.
+    private const AVISO_PAGO_DIAS = 3;
+
+    private function diasParaPago(int $tenantId): ?int {
+        try {
+            $st = $this->db()->prepare("SELECT DATEDIFF(fecha_pago, CURDATE()) FROM negocios WHERE id = :t");
+            $st->execute([':t' => $tenantId]);
+            $dias = $st->fetchColumn();
+            return ($dias === false || $dias === null) ? null : (int) $dias;
+        } catch (Throwable $e) {
+            error_log('[SOLTEC brix] No se pudo leer fecha_pago: ' . $e->getMessage());
+            return null;
+        }
     }
 
     public function salir() {

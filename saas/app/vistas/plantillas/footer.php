@@ -14,5 +14,6 @@ document.addEventListener('click', function (e) {
 });
 </script>
 
+<?php include __DIR__ . '/aviso_pago.php'; ?>
 </body>
 </html>

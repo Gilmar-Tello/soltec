@@ -28,5 +28,6 @@
         envoltorio.appendChild(t);
     });
 </script>
+<?php include __DIR__ . '/aviso_pago.php'; ?>
 </body>
 </html>

@@ -64,6 +64,19 @@
             </div>
         </div>
 
+<?php if (array_key_exists('fecha_pago', $cliente)): ?>
+        <div class="tarjeta-sol p-6 mt-5">
+            <label class="etiqueta-sol">📅 Fecha de pago</label>
+            <input type="date" name="fecha_pago" min="2024-01-01" max="2100-12-31"
+                   value="<?= htmlspecialchars($cliente['fecha_pago'] ?? '') ?>"
+                   class="campo-sol sm:max-w-xs">
+            <p class="text-xs text-sol-medio mt-2">
+                Desde 3 días antes, cada usuario ve un aviso al iniciar sesión. Pasada esta fecha (vale hasta las 23:59),
+                el negocio ya no puede entrar. Déjala vacía para no avisar ni bloquear.
+            </p>
+        </div>
+<?php endif; ?>
+
         <div class="flex gap-3 mt-5">
             <button type="submit" class="btn-sol px-6 py-3">
                 💾 Guardar Cambios

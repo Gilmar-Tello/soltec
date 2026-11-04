@@ -300,6 +300,23 @@ class PanelControlador {
             header('Location: ' . URL_BASE . '/?url=panel/editarCliente/' . $id); exit;
         }
 
+        // Fecha de pago: solo se toca si el formulario la trae (la columna fecha_pago puede no
+        // existir todavia en esa base). Vacia = sin fecha: no hay aviso ni bloqueo.
+        $guardarFecha = isset($_POST['fecha_pago']);
+        $fechaPago    = null;
+        if ($guardarFecha) {
+            $texto = trim((string) $_POST['fecha_pago']);
+            if ($texto !== '') {
+                $d    = DateTime::createFromFormat('!Y-m-d', $texto);
+                $anio = $d ? (int) $d->format('Y') : 0;
+                if (!$d || $d->format('Y-m-d') !== $texto || $anio < 2024 || $anio > 2100) {
+                    $_SESSION['error'] = 'La fecha de pago no es válida.';
+                    header('Location: ' . URL_BASE . '/?url=panel/editarCliente/' . $id); exit;
+                }
+                $fechaPago = $texto;
+            }
+        }
+
         $tabla = $this->tablaTenants();
         $this->db()->prepare("UPDATE `$tabla` SET
             nombre_negocio=:nombre, direccion=:dir, telefono=:tel,
@@ -308,6 +325,13 @@ class PanelControlador {
                 ':nombre'=>$nombreNegocio, ':dir'=>$direccion, ':tel'=>$telefono,
                 ':email'=>$emailContacto, ':nit'=>$nit, ':plan'=>$plan, ':id'=>$id,
             ]);
+
+        if ($guardarFecha) {
+            $this->db()->prepare("UPDATE `$tabla` SET fecha_pago = :f WHERE id = :id")
+                 ->execute([':f' => $fechaPago, ':id' => $id]);
+            $this->registrarBitacora('fecha_pago_cliente', $this->resolverSistema(), $id,
+                'fecha=' . ($fechaPago ?? 'sin fecha'));
+        }
 
         $_SESSION['exito'] = 'Cliente actualizado correctamente.';
         header('Location: ' . URL_BASE . '/?url=panel/clientes'); exit;

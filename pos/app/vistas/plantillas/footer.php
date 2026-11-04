@@ -120,5 +120,6 @@ window.addEventListener('resize', () => { if (window.innerWidth >= 768) toggleMe
 
 <script src="<?= URL_BASE ?>/app/public/js/offline.js"></script>
 
+<?php include __DIR__ . '/aviso_pago.php'; ?>
 </body>
 </html> 

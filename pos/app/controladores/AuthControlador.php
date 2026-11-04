@@ -70,7 +70,15 @@ class AuthControlador {
         $user = $coinciden[0];
 
         if (!$user['tenant_activo']) {
-            $_SESSION['error'] = 'Esta cuenta de negocio está suspendida. Contactá a soporte.';
+            $_SESSION['error'] = 'Esta cuenta de negocio está suspendida por falta de pago u otro inconveniente. Contactá a soporte +502 54925395.';
+            header('Location: ' . URL_BASE . '/?url=auth/login');
+            exit;
+        }
+
+        // Fecha de pago (la fija el panel maestro): vale hasta las 23:59 de ese día.
+        $diasPago = $this->diasParaPago($db, (int) $user['tenant_id']);
+        if ($diasPago !== null && $diasPago < 0) {
+            $_SESSION['error'] = 'Esta cuenta de negocio está suspendida por falta de pago u otro inconveniente. Contactá a soporte +502 54925395.';
             header('Location: ' . URL_BASE . '/?url=auth/login');
             exit;
         }
@@ -88,8 +96,30 @@ class AuthControlador {
         $_SESSION['tenant_id']      = $user['tenant_id'];
         $_SESSION['tenant_nombre']  = $user['nombre_negocio'];
 
+        // Aviso de pago: solo desde 3 días antes; se muestra una vez (plantillas/aviso_pago.php)
+        unset($_SESSION['aviso_pago_dias']);
+        if ($diasPago !== null && $diasPago <= self::AVISO_PAGO_DIAS) {
+            $_SESSION['aviso_pago_dias'] = $diasPago;
+        }
+
         header('Location: ' . URL_BASE . '/?url=pos/index');
         exit;
+    }
+
+    // Días que faltan para la fecha de pago del negocio (negativo = ya venció, null = sin fecha).
+    // Va en una consulta aparte: si la columna fecha_pago aún no existe en la base, el login no se rompe.
+    private const AVISO_PAGO_DIAS = 3;
+
+    private function diasParaPago(PDO $db, int $tenantId): ?int {
+        try {
+            $st = $db->prepare("SELECT DATEDIFF(fecha_pago, CURDATE()) FROM tenants WHERE id = :t");
+            $st->execute([':t' => $tenantId]);
+            $dias = $st->fetchColumn();
+            return ($dias === false || $dias === null) ? null : (int) $dias;
+        } catch (Throwable $e) {
+            error_log('[POS GT] No se pudo leer fecha_pago: ' . $e->getMessage());
+            return null;
+        }
     }
 
     // Cerrar sesión
