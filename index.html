@@ -182,6 +182,7 @@
         <p class="pie-visitas" id="visitas-caja" hidden>
             <span aria-hidden="true">👁</span> Visitas: <strong id="visitas-numero">0</strong>
         </p>
+        <p class="pie-cookies"><a href="#" id="cookies-cambiar">Preferencias de cookies</a></p>
         <p class="pie-copy">&copy; <span id="anio">2026</span> SOLTEC. Todos los derechos reservados.</p>
     </footer>
 
@@ -195,19 +196,21 @@
         <span>WhatsApp</span>
     </a>
 
+    <!-- AVISO DE COOKIES -->
+    <div class="aviso-cookies" id="aviso-cookies" role="dialog" aria-labelledby="cookies-titulo" aria-describedby="cookies-texto" hidden>
+        <div class="aviso-cookies-texto">
+            <strong id="cookies-titulo">Usamos cookies</strong>
+            <p id="cookies-texto">Usamos una cookie para contar las visitas de este sitio de forma anónima. Puedes aceptarla o rechazarla; la página funciona igual en ambos casos.</p>
+        </div>
+        <div class="aviso-cookies-botones">
+            <button type="button" class="boton-cookies boton-cookies-sec" id="cookies-rechazar">Rechazar</button>
+            <button type="button" class="boton-cookies" id="cookies-aceptar">Aceptar</button>
+        </div>
+    </div>
+
     <script>
         document.getElementById('anio').textContent = new Date().getFullYear();
-
-        // Contador de visitas: una por navegador. Si falla, queda oculto.
-        fetch('contador.php', { method: 'POST', credentials: 'same-origin', cache: 'no-store' })
-            .then(function (r) { return r.ok ? r.json() : null; })
-            .then(function (d) {
-                if (d && Number.isInteger(d.visitas)) {
-                    document.getElementById('visitas-numero').textContent = d.visitas.toLocaleString('es-GT');
-                    document.getElementById('visitas-caja').hidden = false;
-                }
-            })
-            .catch(function () {});
     </script>
+    <script src="cookies.js"></script>
 </body>
 </html>
