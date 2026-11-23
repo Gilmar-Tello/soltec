@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión — <?= htmlspecialchars($config['nombre_negocio'] ?? 'POS GT') ?></title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏪</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
     </style>
 </head>
-<body class="min-h-screen bg-green-50 flex items-center justify-center p-4">
+<body class="min-h-screen bg-sol-fondo flex items-center justify-center p-4">
 
     <div class="w-full max-w-md">
 

@@ -52,12 +52,12 @@
 
 <div class="space-y-3">
 <?php foreach ($items as $it): ?>
-    <div class="border-2 <?= $it['activa'] ? 'border-green-300 bg-green-50' : 'border-gray-200' ?> rounded-xl p-4">
+    <div class="border-2 <?= $it['activa'] ? 'border-emerald-300 bg-emerald-50' : 'border-gray-200' ?> rounded-xl p-4">
         <div class="flex flex-wrap items-center gap-2 mb-1">
             <span class="text-xl"><?= htmlspecialchars($it['icono']) ?></span>
             <span class="font-extrabold text-gray-800"><?= htmlspecialchars($it['nombre']) ?></span>
             <?php if ($it['activa']): ?>
-                <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full">✅ Activa en tu negocio</span>
+                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-0.5 rounded-full">✅ Activa en tu negocio</span>
             <?php endif; ?>
             <span class="ml-auto text-sm font-extrabold text-amber-700">💰 <?= htmlspecialchars($it['precio']) ?></span>
         </div>

@@ -10,8 +10,7 @@ $config = $config->fetch();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?> — POS GT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
         @media print {

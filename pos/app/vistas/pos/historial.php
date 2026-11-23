@@ -103,7 +103,7 @@ document.getElementById('modalPdf').addEventListener('click', function(e) {
                         <td class="px-4 py-3 text-center">
                             <?php
                             $pagoColor = match($v['tipo_pago']) {
-                                'efectivo' => 'bg-green-100 text-green-700',
+                                'efectivo' => 'bg-emerald-100 text-emerald-700',
                                 'tarjeta'  => 'bg-blue-100 text-blue-700',
                                 'credito'  => 'bg-orange-100 text-orange-700',
                                 default    => ''
@@ -127,7 +127,7 @@ document.getElementById('modalPdf').addEventListener('click', function(e) {
                         <?php else: ?>
                         <td class="px-4 py-3 text-center">
                             <?php if ($v['estado_pago'] === 'pagado'): ?>
-                                <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">✅ Pagado</span>
+                                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">✅ Pagado</span>
                             <?php else: ?>
                                 <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded-full">⏳ Pendiente</span>
                             <?php endif; ?>

@@ -7,7 +7,7 @@ if (!isset($_SESSION['usuario_id'])) { echo '<p style="padding:20px;color:red;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?></title>
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: Arial, Helvetica, sans-serif; }
         @media print {

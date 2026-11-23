@@ -8,9 +8,7 @@ $configNegocio = configEfectiva(sucursalTrabajo());   // logo y nombre: los de l
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title><?= $tituloPagina ?? 'POS GT' ?> — <?= htmlspecialchars($configNegocio['nombre_negocio'] ?? 'POS GT') ?></title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏪</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
         .sidebar { transition: transform 0.3s ease; }
@@ -46,7 +44,7 @@ $configNegocio = configEfectiva(sucursalTrabajo());   // logo y nombre: los de l
     </style>
     <script>window.URL_BASE_JS = "<?= URL_BASE ?>";</script>
 </head>
-<body class="bg-green-50 min-h-screen flex">
+<body class="bg-sol-fondo min-h-screen flex">
 
 <!-- SIDEBAR -->
 <aside class="sidebar w-64 bg-green-800 text-white flex flex-col min-h-screen overflow-y-auto" id="sidebar">

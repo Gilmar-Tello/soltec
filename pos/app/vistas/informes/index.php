@@ -141,8 +141,8 @@ document.getElementById('modalPdf').addEventListener('click', function(e) {
         <div class="text-2xl font-extrabold text-orange-600">Q<?= number_format($resumen['costo_total'], 2) ?></div>
         <div class="text-xs text-gray-500 mt-1">Costo de mercadería vendida</div>
     </div>
-    <div class="bg-green-50 border-2 border-green-300 rounded-2xl shadow p-5 text-center">
-        <div class="text-2xl font-extrabold <?= $resumen['ganancia_liquida'] >= 0 ? 'text-green-700' : 'text-red-600' ?>">
+    <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl shadow p-5 text-center">
+        <div class="text-2xl font-extrabold <?= $resumen['ganancia_liquida'] >= 0 ? 'text-emerald-700' : 'text-red-600' ?>">
             Q<?= number_format($resumen['ganancia_liquida'], 2) ?>
         </div>
         <div class="text-xs text-gray-500 mt-1">💰 Ganancia líquida</div>
@@ -233,8 +233,8 @@ $pagoMontos   = jsonJs(array_map(fn($p) => round($p['monto_total'], 2), $porTipo
 
 <script>
 const coloresProductos = [
-    '#16a34a','#15803d','#22c55e','#4ade80','#86efac',
-    '#166534','#dcfce7','#0ea5e9','#8b5cf6','#f59e0b'
+    '#2563eb','#1b4bc0','#4db8ff','#415a77','#a3c0e3',
+    '#1b263b','#dbe9fb','#0ea5e9','#8b5cf6','#f59e0b'
 ];
 const coloresPago = ['#16a34a','#0ea5e9','#f59e0b'];
 
@@ -246,7 +246,7 @@ new Chart(document.getElementById('graficaVentas'), {
         datasets: [{
             label: 'Total vendido (Q)',
             data: <?= $diasMontos ?>,
-            backgroundColor: '#16a34a',
+            backgroundColor: '#2563eb',
             borderRadius: 6,
         }]
     },

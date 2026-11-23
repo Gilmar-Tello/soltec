@@ -59,7 +59,7 @@
                             <?= $s['cerrada_en'] ? date('d/m/Y H:i', strtotime($s['cerrada_en'])) : '—' ?>
                         </td>
                         <td class="px-4 py-3 text-right text-gray-700">Q<?= number_format($s['monto_inicial'], 2) ?></td>
-                        <td class="px-4 py-3 text-right text-green-600 font-bold">Q<?= number_format($s['total_efectivo'], 2) ?></td>
+                        <td class="px-4 py-3 text-right text-emerald-600 font-bold">Q<?= number_format($s['total_efectivo'], 2) ?></td>
                         <td class="px-4 py-3 text-right text-blue-600 font-bold">Q<?= number_format($s['total_tarjeta'], 2) ?></td>
                         <td class="px-4 py-3 text-right text-orange-600 font-bold">Q<?= number_format($s['total_credito'], 2) ?></td>
                         <td class="px-4 py-3 text-right font-extrabold text-gray-800">Q<?= number_format($totalGeneral, 2) ?></td>

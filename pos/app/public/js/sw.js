@@ -14,7 +14,7 @@
 //     verdad, deben fallar de verdad (antes un ping guardado hacía creer que había red
 //     y la venta pendiente se marcaba con error).
 // ============================================================
-const CACHE_NAME = 'pos-gt-v5'; // v5: las ventas offline viajan con su sucursal (offline.js nuevo). v4: solo se guardan pos/index y pos/venta; caducidad de 12 h
+const CACHE_NAME = 'pos-gt-v6'; // v6: paleta de SOLTEC (las paginas guardadas se renuevan). v5: las ventas offline viajan con su sucursal (offline.js nuevo). v4: solo se guardan pos/index y pos/venta; caducidad de 12 h
 const EDAD_MAX_PAGINA_MS = 12 * 60 * 60 * 1000;
 
 // Rutas (?url=...) con sesión que SÍ se guardan para trabajar sin internet
@@ -47,8 +47,8 @@ function paginaFresca(respuesta) {
 const PAGINA_SIN_CONEXION = () => new Response(
     `<!DOCTYPE html><html><head><meta charset="UTF-8">
     <title>Sin conexión</title>
-    <style>body{font-family:sans-serif;text-align:center;padding:60px 20px;background:#f0fdf4;}
-    h1{color:#166534;}p{color:#6b7280;}</style></head>
+    <style>body{font-family:sans-serif;text-align:center;padding:60px 20px;background:#f4f7fb;}
+    h1{color:#0d1b2a;}p{color:#6b7280;}</style></head>
     <body><h1>📡 Sin conexión</h1>
     <p>Esta página no está disponible sin internet.</p>
     <p>Sin conexión solo funciona la pantalla de <b>Venta</b> (ábrela una vez con internet al empezar el turno).</p>

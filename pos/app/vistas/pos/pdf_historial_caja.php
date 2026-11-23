@@ -8,8 +8,7 @@ $config = configEfectiva(sucursalTrabajo());   // datos del encabezado: los de l
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?> — POS GT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
         @media print {
@@ -96,7 +95,7 @@ $config = configEfectiva(sucursalTrabajo());   // datos del encabezado: los de l
                     <td class="px-2 py-2 text-gray-600 text-xs"><?= date('d/m/Y H:i', strtotime($s['abierta_en'])) ?></td>
                     <td class="px-2 py-2 text-gray-600 text-xs"><?= $s['cerrada_en'] ? date('d/m/Y H:i', strtotime($s['cerrada_en'])) : '—' ?></td>
                     <td class="px-2 py-2 text-right text-xs">Q<?= number_format($s['monto_inicial'], 2) ?></td>
-                    <td class="px-2 py-2 text-right text-green-600 font-bold text-xs">Q<?= number_format($s['total_efectivo'], 2) ?></td>
+                    <td class="px-2 py-2 text-right text-emerald-600 font-bold text-xs">Q<?= number_format($s['total_efectivo'], 2) ?></td>
                     <td class="px-2 py-2 text-right text-blue-600 font-bold text-xs">Q<?= number_format($s['total_tarjeta'], 2) ?></td>
                     <td class="px-2 py-2 text-right text-orange-600 font-bold text-xs">Q<?= number_format($s['total_credito'], 2) ?></td>
                     <td class="px-2 py-2 text-right text-xs"><?= $s['monto_final'] !== null ? 'Q'.number_format($s['monto_final'],2) : '—' ?></td>

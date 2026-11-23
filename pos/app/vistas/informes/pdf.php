@@ -8,8 +8,7 @@ $config = configEfectiva(sucursalTrabajo());   // datos del encabezado: los de l
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?> — POS GT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <script src="<?= URL_BASE ?>/app/public/vendor/chart-4.4.7.umd.js"></script>
     <style>
         body { font-family: 'Nunito', sans-serif; }
@@ -83,8 +82,8 @@ $config = configEfectiva(sucursalTrabajo());   // datos del encabezado: los de l
                 <div class="text-xl font-extrabold text-orange-600">Q<?= number_format($resumen['costo_total'], 2) ?></div>
                 <div class="text-xs text-gray-500 mt-1">Costo de mercadería vendida</div>
             </div>
-            <div class="bg-green-50 border-2 border-green-300 rounded-xl p-4 text-center">
-                <div class="text-xl font-extrabold <?= $resumen['ganancia_liquida'] >= 0 ? 'text-green-700' : 'text-red-600' ?>">
+            <div class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-4 text-center">
+                <div class="text-xl font-extrabold <?= $resumen['ganancia_liquida'] >= 0 ? 'text-emerald-700' : 'text-red-600' ?>">
                     Q<?= number_format($resumen['ganancia_liquida'], 2) ?>
                 </div>
                 <div class="text-xs text-gray-500 mt-1">💰 Ganancia líquida</div>
@@ -222,7 +221,7 @@ new Chart(document.getElementById('graficaVentas'), {
     type: 'bar',
     data: {
         labels: <?= $diasLabels ?>,
-        datasets: [{ label: 'Total (Q)', data: <?= $diasMontos ?>, backgroundColor: '#16a34a', borderRadius: 6 }]
+        datasets: [{ label: 'Total (Q)', data: <?= $diasMontos ?>, backgroundColor: '#2563eb', borderRadius: 6 }]
     },
     options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: v => 'Q'+v } } } }
 });
@@ -230,7 +229,7 @@ new Chart(document.getElementById('graficaVentas'), {
 <?php if (!empty($topProductos)): ?>
 new Chart(document.getElementById('graficaProductos'), {
     type: 'doughnut',
-    data: { labels: <?= $prodLabels ?>, datasets: [{ data: <?= $prodCants ?>, backgroundColor: ['#16a34a','#15803d','#22c55e','#4ade80','#86efac','#166534','#dcfce7','#0ea5e9','#8b5cf6','#f59e0b'], borderWidth: 2 }] },
+    data: { labels: <?= $prodLabels ?>, datasets: [{ data: <?= $prodCants ?>, backgroundColor: ['#2563eb','#1b4bc0','#4db8ff','#415a77','#a3c0e3','#1b263b','#dbe9fb','#0ea5e9','#8b5cf6','#f59e0b'], borderWidth: 2 }] },
     options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } } }
 });
 <?php endif; ?>

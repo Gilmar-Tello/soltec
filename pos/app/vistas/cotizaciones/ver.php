@@ -1,7 +1,7 @@
 <?php include RAIZ . '/app/vistas/plantillas/header.php'; ?>
 
 <?php if (isset($_SESSION['exito'])): ?>
-    <div class="bg-green-50 border border-green-300 text-green-800 rounded-xl p-4 mb-5">
+    <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-xl p-4 mb-5">
         ✅ <?= htmlspecialchars($_SESSION['exito']) ?>
     </div>
     <?php unset($_SESSION['exito']); ?>
@@ -40,7 +40,7 @@
         <?php if ($cotizacion['estado'] === 'abierta'): ?>
             <span class="bg-blue-100 text-blue-700 text-sm font-bold px-3 py-1 rounded-full">📝 Abierta</span>
         <?php elseif ($cotizacion['estado'] === 'convertida'): ?>
-            <span class="bg-green-100 text-green-700 text-sm font-bold px-3 py-1 rounded-full">✅ Convertida</span>
+            <span class="bg-emerald-100 text-emerald-700 text-sm font-bold px-3 py-1 rounded-full">✅ Convertida</span>
         <?php else: ?>
             <span class="bg-gray-100 text-gray-500 text-sm font-bold px-3 py-1 rounded-full">🗑️ Eliminada</span>
         <?php endif; ?>
@@ -62,7 +62,7 @@
 <?php endif; ?>
 
 <?php if ($cotizacion['estado'] === 'convertida' && $ventaResultante): ?>
-<div class="bg-green-50 border border-green-300 text-green-800 rounded-xl p-4 mb-5">
+<div class="bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-xl p-4 mb-5">
     ✅ Esta cotización ya se convirtió en una venta.
     <a href="<?= URL_BASE ?>/?url=pos/ticket/<?= $ventaResultante ?>" class="underline font-bold">Ver venta #<?= $ventaResultante ?></a>
 </div>

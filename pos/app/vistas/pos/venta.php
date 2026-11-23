@@ -23,7 +23,7 @@
 
 <?php if (esAdminConSucursales()): ?>
     <!-- Aviso fijo para el administrador: la venta es de la caja (y sucursal) que esta viendo -->
-    <div class="bg-green-100 border border-green-300 text-green-800 font-bold rounded-xl px-4 py-2 mb-4">
+    <div class="bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold rounded-xl px-4 py-2 mb-4">
         🏬 Vendiendo en: <?= htmlspecialchars(nombreSucursalTrabajo()) ?>
     </div>
 <?php endif; ?>
@@ -85,7 +85,7 @@
                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:outline-none text-sm"
                            autofocus>
                     <span id="indicadorEscaneo"
-                          class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-xs bg-green-100 text-green-700 font-bold px-2 py-1 rounded-full">
+                          class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-xs bg-emerald-100 text-emerald-700 font-bold px-2 py-1 rounded-full">
                         📷 Escaneado
                     </span>
                     <div id="resultadosProductos"
@@ -181,7 +181,7 @@
                        class="w-full px-3 py-2 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:outline-none text-sm">
                 <div class="flex justify-between mt-2 text-sm font-bold">
                     <span class="text-gray-600">Cambio</span>
-                    <span class="text-green-600" id="cambio">Q0.00</span>
+                    <span class="text-emerald-600" id="cambio">Q0.00</span>
                 </div>
             </div>
             <div class="mb-4">
@@ -214,7 +214,7 @@
                class="w-full px-4 py-3 text-2xl text-center border-2 border-gray-200 rounded-xl focus:border-green-500 focus:outline-none font-bold mb-2">
         <div class="flex justify-between text-sm font-bold mb-1">
             <span class="text-gray-600">Cambio</span>
-            <span class="text-green-600" id="cambioModal">Q0.00</span>
+            <span class="text-emerald-600" id="cambioModal">Q0.00</span>
         </div>
         <p id="avisoMontoInsuficienteModal" class="hidden text-xs text-red-500 mb-3">⚠️ El monto es menor al total</p>
         <div class="flex gap-3 mt-3">

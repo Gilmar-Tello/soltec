@@ -8,8 +8,7 @@ $config = configEfectiva(sucursalTrabajo());   // datos del encabezado: los de l
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?> — POS GT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
         @media print {
@@ -97,7 +96,7 @@ $config = configEfectiva(sucursalTrabajo());   // datos del encabezado: los de l
                     <td class="px-3 py-2 text-right font-bold text-green-700">Q<?= number_format($v['total'], 2) ?></td>
                     <td class="px-3 py-2 text-center">
                         <?php if ($v['estado_pago']==='pagado'): ?>
-                            <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">✅</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">✅</span>
                         <?php else: ?>
                             <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded-full">⏳</span>
                         <?php endif; ?>

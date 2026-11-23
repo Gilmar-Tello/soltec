@@ -41,7 +41,7 @@
                             </td>
                             <td class="px-4 py-3">
                                 <?php if ($m['tipo'] === 'entrada'): ?>
-                                    <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">
+                                    <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">
                                         📥 Entrada
                                     </span>
                                 <?php else: ?>
@@ -50,7 +50,7 @@
                                     </span>
                                 <?php endif; ?>
                             </td>
-                            <td class="px-4 py-3 text-right font-bold <?= $m['tipo'] === 'entrada' ? 'text-green-600' : 'text-red-600' ?>">
+                            <td class="px-4 py-3 text-right font-bold <?= $m['tipo'] === 'entrada' ? 'text-emerald-600' : 'text-red-600' ?>">
                                 <?= $m['tipo'] === 'entrada' ? '+' : '-' ?><?= number_format($m['cantidad'], 2) ?>
                             </td>
                             <td class="px-4 py-3 text-right text-gray-500">

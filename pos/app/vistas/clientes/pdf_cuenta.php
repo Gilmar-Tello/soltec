@@ -10,8 +10,7 @@ $config = $config->fetch();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?> — POS GT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
         .ticket-print { display: none; }
@@ -138,13 +137,13 @@ $config = $config->fetch();
                     <td class="px-3 py-2 font-mono text-xs text-gray-500">#<?= $v['id'] ?></td>
                     <td class="px-3 py-2 text-gray-600 text-xs"><?= date('d/m/Y H:i', strtotime($v['creado_en'])) ?></td>
                     <td class="px-3 py-2 text-right font-bold text-gray-800">Q<?= number_format($v['total'],2) ?></td>
-                    <td class="px-3 py-2 text-right text-green-600">Q<?= number_format($v['pagado'],2) ?></td>
+                    <td class="px-3 py-2 text-right text-emerald-600">Q<?= number_format($v['pagado'],2) ?></td>
                     <td class="px-3 py-2 text-right font-extrabold <?= $v['saldo_pendiente']>0?'text-red-600':'text-gray-400' ?>">
                         Q<?= number_format($v['saldo_pendiente'],2) ?>
                     </td>
                     <td class="px-3 py-2 text-center">
                         <?php if ($v['estado_pago']==='pagado'): ?>
-                            <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">✅ Pagado</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">✅ Pagado</span>
                         <?php else: ?>
                             <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded-full">⏳ Pendiente</span>
                         <?php endif; ?>

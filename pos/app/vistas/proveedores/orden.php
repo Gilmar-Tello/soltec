@@ -10,7 +10,7 @@
     </div>
 
     <?php if (isset($_SESSION['exito'])): ?>
-        <div class="bg-green-50 border border-green-300 text-green-800 rounded-xl p-4 mb-5">
+        <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-xl p-4 mb-5">
             ✅ <?= htmlspecialchars($_SESSION['exito']) ?>
         </div>
         <?php unset($_SESSION['exito']); ?>
@@ -33,7 +33,7 @@
             <?php
             $estadoColor = match($orden['estado']) {
                 'pendiente' => 'text-yellow-600 bg-yellow-50',
-                'recibida'  => 'text-green-600 bg-green-50',
+                'recibida'  => 'text-emerald-600 bg-emerald-50',
                 'cancelada' => 'text-red-600 bg-red-50',
                 default     => 'text-gray-600'
             };

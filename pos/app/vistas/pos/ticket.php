@@ -101,7 +101,7 @@ include RAIZ . '/app/vistas/plantillas/header.php';
     </div>
 
     <?php if (isset($_SESSION['exito'])): ?>
-        <div class="bg-green-50 border border-green-300 text-green-800 rounded-xl p-4 mb-4 no-print">
+        <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-xl p-4 mb-4 no-print">
             ✅ <?= htmlspecialchars($_SESSION['exito']) ?>
         </div>
         <?php unset($_SESSION['exito']); ?>
@@ -189,7 +189,7 @@ include RAIZ . '/app/vistas/plantillas/header.php';
             </div>
             <?php endif; ?>
             <?php if ($venta['cambio'] > 0): ?>
-            <div class="flex justify-between text-green-600 font-bold">
+            <div class="flex justify-between text-emerald-600 font-bold">
                 <span>Cambio</span>
                 <span>Q<?= number_format($venta['cambio'],2) ?></span>
             </div>
@@ -216,12 +216,12 @@ include RAIZ . '/app/vistas/plantillas/header.php';
             <?php foreach ($abonos as $a): ?>
             <div class="flex justify-between text-xs mb-0.5">
                 <span class="text-gray-500"><?= date('d/m/Y H:i', strtotime($a['creado_en'])) ?></span>
-                <span class="font-bold text-green-600">Q<?= number_format($a['monto'], 2) ?></span>
+                <span class="font-bold text-emerald-600">Q<?= number_format($a['monto'], 2) ?></span>
             </div>
             <?php endforeach; ?>
             <div class="flex justify-between text-xs font-extrabold border-t border-gray-200 pt-1 mt-1">
                 <span>Total abonado</span>
-                <span class="text-green-700">Q<?= number_format($totalAbonado, 2) ?></span>
+                <span class="text-emerald-700">Q<?= number_format($totalAbonado, 2) ?></span>
             </div>
         </div>
         <?php endif; ?>
@@ -229,7 +229,7 @@ include RAIZ . '/app/vistas/plantillas/header.php';
         <!-- Estado -->
         <div class="text-center mb-3">
             <?php if ($venta['estado_pago'] === 'pagado'): ?>
-                <span class="bg-green-100 text-green-700 font-bold px-3 py-1 rounded-full text-xs">✅ PAGADO</span>
+                <span class="bg-emerald-100 text-emerald-700 font-bold px-3 py-1 rounded-full text-xs">✅ PAGADO</span>
             <?php else: ?>
                 <span class="bg-red-100 text-red-700 font-bold px-3 py-1 rounded-full text-xs">⏳ CRÉDITO PENDIENTE</span>
             <?php endif; ?>

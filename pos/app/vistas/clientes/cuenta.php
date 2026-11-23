@@ -15,7 +15,7 @@
 </div>
 
 <?php if (isset($_SESSION['exito'])): ?>
-    <div class="bg-green-50 border border-green-300 text-green-800 rounded-xl p-4 mb-5">
+    <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-xl p-4 mb-5">
         ✅ <?= htmlspecialchars($_SESSION['exito']) ?>
     </div>
     <?php unset($_SESSION['exito']); ?>
@@ -45,7 +45,7 @@
     </div>
     <div class="bg-white rounded-2xl shadow p-4 text-center">
         <div class="text-xs text-gray-400 mb-1">Deuda total</div>
-        <div class="font-bold text-2xl <?= $deudaTotal > 0 ? 'text-red-600' : 'text-green-600' ?>">
+        <div class="font-bold text-2xl <?= $deudaTotal > 0 ? 'text-red-600' : 'text-emerald-600' ?>">
             Q<?= number_format($deudaTotal, 2) ?>
         </div>
     </div>
@@ -90,14 +90,14 @@
                         <td class="px-3 py-2 text-gray-500 text-xs"><?= date('d/m/Y H:i', strtotime($m['creado_en'])) ?></td>
                         <td class="px-3 py-2">
                             <?php if ($m['tipo'] === 'deposito'): ?>
-                                <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">💵 Depósito</span>
+                                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">💵 Depósito</span>
                             <?php elseif ($m['tipo'] === 'consumo'): ?>
                                 <span class="bg-orange-100 text-orange-700 text-xs font-bold px-2 py-1 rounded-full">🛒 Consumo</span>
                             <?php else: ?>
                                 <span class="bg-gray-100 text-gray-700 text-xs font-bold px-2 py-1 rounded-full">⚙️ Ajuste</span>
                             <?php endif; ?>
                         </td>
-                        <td class="px-3 py-2 text-right font-bold <?= $m['tipo'] === 'deposito' ? 'text-green-600' : 'text-orange-600' ?>">
+                        <td class="px-3 py-2 text-right font-bold <?= $m['tipo'] === 'deposito' ? 'text-emerald-600' : 'text-orange-600' ?>">
                             <?= $m['tipo'] === 'deposito' ? '+' : '-' ?>Q<?= number_format($m['monto'], 2) ?>
                         </td>
                         <td class="px-3 py-2 text-right text-gray-600">Q<?= number_format($m['saldo_nuevo'], 2) ?></td>
@@ -138,7 +138,7 @@ $ventasPagadas    = array_filter($ventas, fn($v) => $v['estado_pago'] === 'pagad
                 </div>
                 <div class="flex gap-4 mt-1">
                     <div class="text-sm text-gray-600">Total: <b>Q<?= number_format($v['total'], 2) ?></b></div>
-                    <div class="text-sm text-green-600">Abonado: <b>Q<?= number_format($v['pagado'], 2) ?></b></div>
+                    <div class="text-sm text-emerald-600">Abonado: <b>Q<?= number_format($v['pagado'], 2) ?></b></div>
                     <div class="text-sm text-red-600 font-extrabold">Saldo: Q<?= number_format($v['saldo_pendiente'], 2) ?></div>
                 </div>
                 <?php if (!empty($detallesPorVenta[$v['id']])): ?>
@@ -177,7 +177,7 @@ $ventasPagadas    = array_filter($ventas, fn($v) => $v['estado_pago'] === 'pagad
     </div>
 </div>
 <?php else: ?>
-<div class="bg-green-50 border border-green-200 rounded-2xl p-5 mb-5 text-center text-green-700 font-bold">
+<div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 mb-5 text-center text-emerald-700 font-bold">
     ✅ Este cliente no tiene deudas pendientes.
 </div>
 <?php endif; ?>
@@ -205,7 +205,7 @@ $ventasPagadas    = array_filter($ventas, fn($v) => $v['estado_pago'] === 'pagad
                     <td class="px-4 py-3 text-gray-500 text-xs"><?= date('d/m/Y H:i', strtotime($v['creado_en'])) ?></td>
                     <td class="px-4 py-3 text-right font-bold text-gray-700">Q<?= number_format($v['total'], 2) ?></td>
                     <td class="px-4 py-3 text-center">
-                        <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">✅ Pagado</span>
+                        <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">✅ Pagado</span>
                     </td>
                 </tr>
                 <?php if (!empty($detallesPorVenta[$v['id']])): ?>

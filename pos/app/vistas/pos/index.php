@@ -9,7 +9,7 @@ include RAIZ . '/app/vistas/plantillas/header.php';
 </div>
 
 <?php if (isset($_SESSION['exito'])): ?>
-    <div class="bg-green-50 border border-green-300 text-green-800 rounded-xl p-4 mb-5">
+    <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-xl p-4 mb-5">
         ✅ <?= htmlspecialchars($_SESSION['exito']) ?>
     </div>
     <?php unset($_SESSION['exito']); ?>

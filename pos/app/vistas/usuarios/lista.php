@@ -12,7 +12,7 @@
 </div>
 
 <?php if (isset($_SESSION['exito'])): ?>
-    <div class="bg-green-50 border border-green-300 text-green-800 rounded-xl p-4 mb-5">
+    <div class="bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-xl p-4 mb-5">
         ✅ <?= htmlspecialchars($_SESSION['exito']) ?>
     </div>
     <?php unset($_SESSION['exito']); ?>
@@ -67,7 +67,7 @@
                     </td>
                     <td class="px-4 py-3 text-center">
                         <?php if ($u['activo']): ?>
-                            <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">✅ Activo</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">✅ Activo</span>
                         <?php else: ?>
                             <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded-full">🚫 Inactivo</span>
                         <?php endif; ?>
@@ -81,7 +81,7 @@
                             <?php if ($u['id'] != $_SESSION['usuario_id']): ?>
                             <a href="<?= URL_BASE ?>/?url=usuarios/toggleActivo/<?= $u['id'] ?>"
                                onclick="return confirm('<?= $u['activo'] ? '¿Desactivar' : '¿Activar' ?> este usuario?')"
-                               class="<?= $u['activo'] ? 'bg-red-100 hover:bg-red-200 text-red-700' : 'bg-green-100 hover:bg-green-200 text-green-700' ?> text-xs font-bold px-3 py-1 rounded-lg transition">
+                               class="<?= $u['activo'] ? 'bg-red-100 hover:bg-red-200 text-red-700' : 'bg-emerald-100 hover:bg-emerald-200 text-emerald-700' ?> text-xs font-bold px-3 py-1 rounded-lg transition">
                                 <?= $u['activo'] ? '🚫 Desactivar' : '✅ Activar' ?>
                             </a>
                             <?php endif; ?>
