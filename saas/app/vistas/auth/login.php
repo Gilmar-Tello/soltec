@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión — Alquileres SOLTEC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex items-center justify-center px-4">
+<body class="bg-slate-100 min-h-screen flex items-center justify-center px-4">
 
 <div class="w-full max-w-sm">
     <div class="text-center mb-6">

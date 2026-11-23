@@ -10,8 +10,7 @@ header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?? 'Panel' ?> — Alquileres SOLTEC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="<?= URL_BASE ?>/app/public/vendor/tailwind-3.4.17.js"></script>
+    <?php include RAIZ . '/app/vistas/plantillas/tema.php'; ?>
     <style>
         body { font-family: 'Nunito', sans-serif; }
         .sidebar { transition: transform 0.3s ease; }
@@ -28,7 +27,7 @@ header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
         }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex">
+<body class="bg-slate-100 min-h-screen flex">
 
 <!-- SIDEBAR -->
 <aside class="sidebar w-64 bg-teal-700 text-white flex flex-col" id="sidebar">
